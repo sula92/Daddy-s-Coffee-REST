@@ -1,6 +1,4 @@
 package com.sula.coffeeshop.service.custom;
-
-import com.sula.coffeeshop.dto.CoffeeDTO;
 import com.sula.coffeeshop.dto.ItemDTO;
 import com.sula.coffeeshop.service.SuperService;
 

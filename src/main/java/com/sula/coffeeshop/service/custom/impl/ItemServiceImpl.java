@@ -21,7 +21,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(readOnly = true)
     public String getNewItemCode() throws Exception {
-        String lastItemCode = itemRepository.getFirstLastCoffeeCodeByOrderByCodeDesc().getCode();
+        String lastItemCode = itemRepository.getFirstLastItemCodeByOrderByCodeDesc().getCode();
         if (lastItemCode == null) {
             return "I001";
         } else {

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @ToString
-@Table(name="`coffee_order`")
+@Table(name="`Order`")
 @NoArgsConstructor
 @Getter
 public class Order implements SuperEntity {
