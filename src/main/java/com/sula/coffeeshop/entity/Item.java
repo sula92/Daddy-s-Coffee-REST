@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -11,11 +12,12 @@ import javax.persistence.Id;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer implements SuperEntity {
+public class Item implements SuperEntity {
 
     @Id
-    private String id;
-    private String name;
-    private String address;
+    private String code;
+    private String description;
+    private BigDecimal unitPrice;
+    private int qtyOnHand;
 
 }

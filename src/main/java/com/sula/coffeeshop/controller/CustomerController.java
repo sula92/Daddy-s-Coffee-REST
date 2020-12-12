@@ -2,6 +2,7 @@ package com.sula.coffeeshop.controller;
 
 import com.sula.coffeeshop.dto.CustomerDTO;
 import com.sula.coffeeshop.service.custom.CustomerService;
+import com.sula.coffeeshop.service.custom.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @CrossOrigin
@@ -19,7 +22,7 @@ public class CustomerController {
 
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @GetMapping
     public List<CustomerDTO> getAllCustomers() throws Exception {

@@ -1,4 +1,6 @@
 package com.sula.coffeeshop.entity;
 
-public class SuperEntity {
+import java.io.Serializable;
+
+public interface SuperEntity extends Serializable {
 }
