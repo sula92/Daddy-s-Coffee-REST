@@ -3,6 +3,7 @@ package com.sula.coffeeshop.controller;
 import com.sula.coffeeshop.dto.ItemDTO;
 import com.sula.coffeeshop.dto.OrderDTO;
 import com.sula.coffeeshop.dto.OrderDetailDTO;
+import com.sula.coffeeshop.entity.Customer;
 import com.sula.coffeeshop.entity.OrderDetail;
 import com.sula.coffeeshop.service.custom.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -41,14 +43,6 @@ public class OrderController {
         orderService.placeOrder(orderDTO,orderDetailDTOS);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping(value = "/{code}",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void updateOrder(@PathVariable @Valid @Pattern(regexp = "OD\\{3}") String code, @RequestBody MultiValueMap<String,String> params) throws Exception {
-        if (!orderService.orderExist(code)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        orderService.updateOrder(params.get("description").get(0),Integer.parseInt(params.get("qtyOnHand").get(0)),Double.parseDouble(params.get("unitPrice").get(0)),code);
-    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{oid}")

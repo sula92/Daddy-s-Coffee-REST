@@ -3,6 +3,7 @@ package com.sula.coffeeshop.service.custom.impl;
 import com.sula.coffeeshop.dto.ItemDTO;
 import com.sula.coffeeshop.dto.OrderDTO;
 import com.sula.coffeeshop.dto.OrderDetailDTO;
+import com.sula.coffeeshop.entity.Customer;
 import com.sula.coffeeshop.entity.Item;
 import com.sula.coffeeshop.entity.Order;
 import com.sula.coffeeshop.entity.OrderDetail;
@@ -105,5 +106,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean orderExist(String oid) {
         return orderRepository.existsById(oid);
+    }
+
+    @Override
+    public void deleteOrder(String oid) {
+        orderRepository.deleteById(oid);
+    }
+
+    @Override
+    public void updateOrder(String id, Date date, Customer customer) {
+        orderRepository.save(new Order());
     }
 }
