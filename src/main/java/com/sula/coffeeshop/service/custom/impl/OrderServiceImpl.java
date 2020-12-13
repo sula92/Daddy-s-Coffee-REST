@@ -80,7 +80,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO getOrder(String id) {
-        return null;
+
+       Order order=orderRepository.getOne(id);
+       OrderDTO orderDTO=new OrderDTO(order.getId(),order.getDate().toString(),order.getCustomer().getId());
+       return orderDTO;
     }
 
     @Override
