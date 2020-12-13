@@ -104,6 +104,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean orderExist(String oid) {
-        return false;
+        return orderRepository.existsById(oid);
     }
 }
