@@ -12,5 +12,6 @@ public interface OrderService {
     public void placeOrder(OrderDTO order, List<OrderDetailDTO> orderDetails) throws Exception;
     OrderDTO getOrder(String id);
     List<OrderDTO> getAllOrders();
+    boolean orderExist(String oids);
 
 }

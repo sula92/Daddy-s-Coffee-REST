@@ -15,4 +15,6 @@ public interface OrderRepository extends JpaRepository<Order,String> {
 
     @Query("select O from Order O where O.id LIKE '%:oid%'")
     public List<Order> searchOrder(@Param("oid") String oid);
+
+   // public boolean orderExist(String oid);
 }

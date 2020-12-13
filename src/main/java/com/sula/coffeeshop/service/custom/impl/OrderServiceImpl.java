@@ -101,4 +101,9 @@ public class OrderServiceImpl implements OrderService {
         }
         return orders;
     }
+
+    @Override
+    public boolean orderExist(String oid) {
+        return false;
+    }
 }
