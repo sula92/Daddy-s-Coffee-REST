@@ -54,9 +54,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrderDTO> searchOrder() throws Exception {
-        List<OrderDTO> orders=orderRepository.searchOrder();
-        return orders;
+    public List<OrderDTO> searchOrder(String oid) throws Exception {
+        List<OrderDTO> orderDTOS=new ArrayList<>();
+        List<Order> orders=orderRepository.searchOrder(oid);
+        orders.stream().forEach(order -> {
+            orderDTOS.add(new OrderDTO(order.getId(),order.getDate().toString(),order.getCustomer().getId()));
+        });
+        return orderDTOS;
     }
 
     @Override

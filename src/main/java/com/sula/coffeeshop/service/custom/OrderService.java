@@ -8,7 +8,7 @@ import java.util.List;
 public interface OrderService {
 
     public String getNewOrderId() throws Exception;
-    public List<OrderDTO> searchOrder() throws Exception;
+    public List<OrderDTO> searchOrder(String oid) throws Exception;
     public void placeOrder(OrderDTO order, List<OrderDetailDTO> orderDetails) throws Exception;
     OrderDTO getOrder(String id);
     List<OrderDTO> getAllOrders();
