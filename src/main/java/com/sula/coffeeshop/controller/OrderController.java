@@ -27,9 +27,9 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @GetMapping(value="/searchOrders")
-    public List<OrderDTO> searchOrder() throws Exception {
-        return orderService.searchOrder();
+    @GetMapping(value="/searchOrders/{oid}")
+    public List<OrderDTO> searchOrder(@PathVariable String oid) throws Exception {
+        return orderService.searchOrder(oid);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
