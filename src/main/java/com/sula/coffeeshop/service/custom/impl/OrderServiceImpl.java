@@ -5,12 +5,16 @@ import com.sula.coffeeshop.dto.OrderDTO;
 import com.sula.coffeeshop.dto.OrderDetailDTO;
 import com.sula.coffeeshop.entity.Item;
 import com.sula.coffeeshop.entity.Order;
+import com.sula.coffeeshop.entity.OrderDetail;
+import com.sula.coffeeshop.repository.custom.CustomerRepository;
+import com.sula.coffeeshop.repository.custom.OrderDetailRepository;
 import com.sula.coffeeshop.repository.custom.OrderRepository;
 import com.sula.coffeeshop.service.custom.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
+    OrderDetailRepository orderDetailRepository;
 
     @Override
     public String getNewOrderId() throws Exception {
@@ -43,12 +53,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<OrderDTO> searchOrder() throws Exception {
-        return null;
+        List<OrderDTO> orders=orderRepository.searchOrder();
+        return orders;
     }
 
     @Override
-    public void placeOrder(OrderDTO order, List<OrderDetailDTO> orderDetails) throws Exception {
+    public void placeOrder(OrderDTO orderDTO, List<OrderDetailDTO> orderDetails) throws Exception {
+
+        List<OrderDetail> orderDetailList=new ArrayList<>();
+        orderDetails.stream().forEach(odto -> {
+            orderDetailList.add(new OrderDetail(odto.getCode(),orderDTO.getId(),odto.getQty(),odto.getUnitPrice()));
+        });
+
+        Date date= Date.valueOf(orderDTO.getDate());
+
+        Order order=new Order(orderDTO.getId(),date,customerRepository.getOne(orderDTO.getCustomerId()));
+        orderRepository.save(order);
 
     }
 
@@ -58,6 +80,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<OrderDTO> getAllOrders() {
 
         List<Order> allOrders = orderRepository.findAll();

@@ -30,7 +30,7 @@ public class CustomerController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) //Not a must.
+    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) //
     public void saveCustomer(@ModelAttribute @Valid CustomerDTO customer, Errors errors) throws Exception {
 //            System.out.println(errors.hasErrors());
         if (customerService.customerExist(customer.getId()) || errors.hasErrors()) {
